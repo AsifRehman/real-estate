@@ -15,7 +15,13 @@ export default async function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3">
           {properties.map(async (property) => {
             const company = await db.query.users.findFirst();
-            return <PropartyCard property={property} company={company} />;
+            return (
+              <PropartyCard
+                property={property}
+                company={company}
+                key={property.id}
+              />
+            );
           })}
         </div>
       </div>

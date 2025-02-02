@@ -1,9 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
+
+import { Button } from "@/components/ui/button";
+import { useLoginStore } from "@/store/LoginStore";
+import { user } from "@/actions/User";
 
 const Header = () => {
+  const { setIsLogin } = useLoginStore();
+  const session = useSession();
+
   return (
-    <header className="left-0 sticky top-0 z-30 w-full h-[80px] place-content-center shadow-md bg-white">
+    <header className="left-0 rounded-md w-full h-[80px] place-content-center shadow-md bg-white">
       <div className="px-10">
         <div className="grid grid-cols-12">
           <div className="col-span-12">
@@ -36,18 +46,38 @@ const Header = () => {
                     Contact
                   </li>
                 </ul>
-
-                <ul className="flex flex-wrap items-center">
-                  <li className="sm:mr-5 xl:mr-[20px] relative group">
-                    <img
-                      src="https://htmldemo.net/bery/bery/assets/images/user/avater.png"
-                      loading="lazy"
-                      width="62"
-                      height="62"
-                      alt="avater"
-                    />
-                  </li>
-                </ul>
+                {session.status !== "loading" && (
+                  <ul className="flex flex-wrap items-center">
+                    {session.status === "authenticated" ? (
+                      <>
+                        <li className="mr-5 xl:mr-[20px]">
+                          <Button>
+                            <Link
+                              href={`/company/${session.data.user?.id}/properties`}
+                            >
+                              Company Dashboard
+                            </Link>
+                          </Button>
+                        </li>
+                        <li>
+                          <img
+                            src={session.data.user?.image || ""}
+                            className="rounded-full cursor-pointer"
+                            loading="lazy"
+                            width="54"
+                            height="54"
+                            alt="avater"
+                            onClick={() => signOut()}
+                          />
+                        </li>
+                      </>
+                    ) : (
+                      <li>
+                        <Button onClick={() => setIsLogin(true)}>Login</Button>
+                      </li>
+                    )}
+                  </ul>
+                )}
               </nav>
             </div>
           </div>

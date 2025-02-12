@@ -1,8 +1,13 @@
+import { auth } from "@/auth";
 import PropartyCard from "@/components/card/PropartyCard";
 import { db } from "@/drizzle";
 
 const CompanyPage = async () => {
-  const properties = await db.query.properties.findMany();
+  const session = await auth();
+  const properties = await db.query.properties.findMany({
+    where: (properties, { eq }) =>
+      session?.user?.id ? eq(properties.userId, session.user.id) : undefined,
+  });
 
   return (
     <div className="mb-10">
@@ -22,5 +27,4 @@ const CompanyPage = async () => {
     </div>
   );
 };
-
 export default CompanyPage;

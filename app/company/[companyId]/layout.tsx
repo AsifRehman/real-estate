@@ -1,9 +1,8 @@
-import { user } from "@/actions/User";
 import { auth } from "@/auth";
 import Navbar from "@/components/navigation/Navbar";
 import { redirect } from "next/navigation";
 
-const ComapanyLayout = async ({
+const CompanyLayout = async ({
   children,
   params,
 }: {
@@ -23,4 +22,4 @@ const ComapanyLayout = async ({
   );
 };
 
-export default ComapanyLayout;
+export default CompanyLayout;

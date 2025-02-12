@@ -18,7 +18,7 @@ interface properties {
 interface company {
   id: string;
   name: string | null;
-  email: string;
+  email: string | null;
   image: string | null;
   role: "user" | "admin" | "company" | null;
   emailVerified: Date | null;

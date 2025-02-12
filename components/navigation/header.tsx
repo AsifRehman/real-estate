@@ -6,7 +6,6 @@ import { useSession, signOut } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
 import { useLoginStore } from "@/store/LoginStore";
-import { user } from "@/actions/User";
 
 const Header = () => {
   const { setIsLogin } = useLoginStore();

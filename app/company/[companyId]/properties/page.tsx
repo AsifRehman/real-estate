@@ -9,6 +9,13 @@ const CompanyPage = async () => {
       eq(properties.userId, session?.user?.id ?? ""),
   });
 
+  if (properties.length === 0) {
+    return (
+      <div className="mt-3 text-2xl ml-2 font-bold italic">
+        You dont have any property
+      </div>
+    );
+  }
   return (
     <div className="mb-10">
       <h1 className="text-xl font-bold text-primary">Your Properties</h1>

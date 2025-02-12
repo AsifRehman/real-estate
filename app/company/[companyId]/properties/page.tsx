@@ -6,7 +6,7 @@ const CompanyPage = async () => {
   const session = await auth();
   const properties = await db.query.properties.findMany({
     where: (properties, { eq }) =>
-      session?.user?.id ? eq(properties.userId, session.user.id) : undefined,
+      eq(properties.userId, session?.user?.id ?? ""),
   });
 
   return (

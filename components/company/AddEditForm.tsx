@@ -78,7 +78,7 @@ const AddEditForm = ({ initialData }: AddEditFormProps) => {
 
       router.push(`/company/${session.data?.user?.id}/properties`);
     } catch (error) {
-      console.error("Error uploading to Firebase:", error);
+      console.error("Error occured uploading to Uploadthing:", error);
       setIsLoading(false);
       // Handle the error (e.g., display an error message to the user)
     }

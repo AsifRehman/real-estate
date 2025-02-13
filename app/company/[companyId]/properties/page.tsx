@@ -12,7 +12,7 @@ const CompanyPage = async () => {
   if (properties.length === 0) {
     return (
       <div className="mt-3 text-2xl ml-2 font-bold italic">
-        You dont have any property
+        No properties found
       </div>
     );
   }

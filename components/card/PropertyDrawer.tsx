@@ -74,6 +74,9 @@ const PropertyDrawer = ({
                 for {property.transactionType}
               </div>
               <div className="md:flex justify-between w-full gap-3 mt-4">
+                <span className="font-extrabold text-xl mr-2">
+                  ${property.title}
+                </span>
                 <span className="font-extrabold text-xl">
                   ${property.price}
                 </span>
@@ -92,6 +95,10 @@ const PropertyDrawer = ({
                   </span>
                 </p>
               </div>
+              <p className="mb-4 font-serif mt-4 text-center gap-2">
+                <span className="font-bold">{property.location}</span>
+                <span className="font-semibold">{property.size}</span>
+              </p>
               <p className="mb-4 font-serif mt-4 text-center">
                 {property.description}
               </p>
